@@ -1,0 +1,25 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariosantu/library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariosantu/library/issues"
+  },
+  "homepage": "https://github.com/mariosantu/library#readme",
+  "devDependencies": {
+    "laravel-mix": "^6.0.43",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.1.0"
+  }
+}
