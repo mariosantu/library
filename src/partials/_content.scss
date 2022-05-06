@@ -1,0 +1,37 @@
+main {
+    width: 80%;
+    margin: auto;
+    #books-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 50px;
+    
+        #books-card {
+            width: calc( 100% / 5);
+            padding: 13px;
+
+            .card-content {
+                background-color: $clr-gray600;
+                padding: 15px;
+                min-height: 100%;
+                max-height: 150px;
+                border-radius: $radius;
+                overflow: scroll;
+
+                &:first-child {
+                    cursor: pointer;
+                    color: $clr-primary;
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                p {
+                    background-color: $clr-gray600;
+                }
+            }
+        }
+    }
+}
+

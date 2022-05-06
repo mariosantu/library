@@ -7,7 +7,50 @@
   \********************/
 /***/ (() => {
 
+var button = document.querySelector('button');
 
+function search() {
+  var userChoice = document.getElementById('user-choice').value; // alert(userChoiceGenerator);
+  // console.log(userChoiceGenerator);
+
+  var BooksUrl = "https://openlibrary.org/subjects/".concat(userChoice, ".json");
+  fetch(BooksUrl).then(function (response) {
+    return response.json();
+  }).then(function (fantaBooks) {
+    // console.log(fantaBooks);
+    var fantaBooksTitlesGenerator = fantaBooks.works; // console.log(fantaBooksTitlesGenerator);
+
+    var divBooksContainer = document.getElementById('books-container');
+    fantaBooksTitlesGenerator.forEach(function (element) {
+      console.log(element);
+      var authors = element.authors; // console.log(authors);
+
+      var divCardBooks = document.createElement('div');
+      divCardBooks.id = 'books-card';
+      var divCardsContent = document.createElement('div');
+      divCardsContent.className = 'card-content';
+      divCardsContent.innerHTML = element.title + ': '; // ulBooks.appendChild(liBooks);
+
+      authors.forEach(function (el) {
+        // console.log(el);
+        var authorsP = document.createElement('p');
+        authorsP.innerHTML = el.name;
+        divCardsContent.appendChild(authorsP);
+      });
+      divBooksContainer.appendChild(divCardBooks);
+      divCardBooks.appendChild(divCardsContent); // divCardsContent.addEventListener('click', () => {
+      //     alert('ciao');
+      // });
+    });
+  });
+}
+
+button.addEventListener('click', function () {
+  search();
+}); // authors.forEach((el) => {
+//     console.log(el);
+//     liBooks.innerHTML = element.title + ': ' + el.name;
+// })
 
 /***/ }),
 
