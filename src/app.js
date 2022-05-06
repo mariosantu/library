@@ -17,7 +17,7 @@ function search() {
         let divBooksContainer = document.getElementById('books-container');
 
         fantaBooksTitlesGenerator.forEach((element ) => {
-            console.log(element);
+            // console.log(element.key);
 
             let authors = element.authors;
             // console.log(authors);
@@ -39,19 +39,54 @@ function search() {
                 authorsP.innerHTML = el.name;
 
                 divCardsContent.appendChild(authorsP);
-            })
+            });
 
             divBooksContainer.appendChild(divCardBooks); 
             divCardBooks.appendChild(divCardsContent);
             
 
-            // divCardsContent.addEventListener('click', () => {
-            //     alert('ciao');
-            // });
+
+
+
+            // show info box
+            divCardsContent.addEventListener('click', () => {
+                let overlayInfo = document.getElementById('popup-1');
+                overlayInfo.className = 'show';
+
+                // take infos
+                let currentKeyBooks = element.key;
+                // console.log(currentKeyBooks);
+
+                fetch(`https://openlibrary.org${currentKeyBooks}.json`).then(res => {
+                    return res.json();
+                }).then(infos => {
+                    
+                    let description = infos.description;
+                    // console.log(description);
+
+                    // to append
+                    let content = document.getElementById('content');
+
+                    let contentTitle = document.createElement('h2');
+                    contentTitle.innerHTML = infos.title;
+
+                    let descriptionParag = document.createElement('p');
+                    descriptionParag.innerHTML = description;
+
+                    content.appendChild(contentTitle);
+                    content.appendChild(descriptionParag);
+                })
+            });
+
+            // hidden info box
+            let closeBtn = document.getElementById('close-btn');
+            closeBtn.addEventListener('click', () => {
+                overlayInfo = document.getElementById('popup-1');
+                overlayInfo.className = 'hidden';
+            });
+
+            
         });
-
-        
-
 
     });
 
@@ -66,3 +101,4 @@ button.addEventListener('click', () => {
 //     liBooks.innerHTML = element.title + ': ' + el.name;
     
 // })
+

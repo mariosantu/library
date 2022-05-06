@@ -22,7 +22,7 @@ function search() {
 
     var divBooksContainer = document.getElementById('books-container');
     fantaBooksTitlesGenerator.forEach(function (element) {
-      console.log(element);
+      // console.log(element.key);
       var authors = element.authors; // console.log(authors);
 
       var divCardBooks = document.createElement('div');
@@ -38,9 +38,35 @@ function search() {
         divCardsContent.appendChild(authorsP);
       });
       divBooksContainer.appendChild(divCardBooks);
-      divCardBooks.appendChild(divCardsContent); // divCardsContent.addEventListener('click', () => {
-      //     alert('ciao');
-      // });
+      divCardBooks.appendChild(divCardsContent); // show info box
+
+      divCardsContent.addEventListener('click', function () {
+        var overlayInfo = document.getElementById('popup-1');
+        overlayInfo.className = 'show'; // take infos
+
+        var currentKeyBooks = element.key; // console.log(currentKeyBooks);
+
+        fetch("https://openlibrary.org".concat(currentKeyBooks, ".json")).then(function (res) {
+          return res.json();
+        }).then(function (infos) {
+          var description = infos.description; // console.log(description);
+          // to append
+
+          var content = document.getElementById('content');
+          var contentTitle = document.createElement('h2');
+          contentTitle.innerHTML = infos.title;
+          var descriptionParag = document.createElement('p');
+          descriptionParag.innerHTML = description;
+          content.appendChild(contentTitle);
+          content.appendChild(descriptionParag);
+        });
+      }); // hidden info box
+
+      var closeBtn = document.getElementById('close-btn');
+      closeBtn.addEventListener('click', function () {
+        overlayInfo = document.getElementById('popup-1');
+        overlayInfo.className = 'hidden';
+      });
     });
   });
 }

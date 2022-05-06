@@ -9,6 +9,14 @@
   color: white;
 }
 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 header .search-bar {
   text-align: center;
   padding-top: 50px;
@@ -76,4 +84,49 @@ main #books-container #books-card .card-content::-webkit-scrollbar {
 }
 main #books-container #books-card .card-content p {
   background-color: #2a324b;
+}
+main .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+main .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 730px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+main .content h2 {
+  background-color: white;
+  color: #222;
+  padding-top: 30px;
+}
+main .content p {
+  background-color: white;
+  color: #222;
+}
+main .content .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
 }
