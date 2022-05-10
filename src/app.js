@@ -85,8 +85,7 @@ function search() {
                 });
                 
             });
-            
-
+    
         });
         // fix error reload same user value    
         let userRefresh = document.getElementById('user-choice');
