@@ -1,53 +1,68 @@
 header {
 
-    .search-bar {
+    .search-bar-container {
         text-align: center;
-        padding-top: 50px;
-        // position: relative;s
-        // width: 20rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        .user-choice {
-            // position: absolute;
-            // top: 0;
-            // left: 0;
-            // width: 100%;
-            // height: 100%;
-            border: 2px solid $clr-gray300;
-            border-radius: $radius;
-            font-family: inherit;
-            font-size: inherit;
-            color: white;
-            outline: none;
-            padding: 10px;
+        .search-bar {
+            display: flex;
+            align-items: baseline;
+            padding-right: 160px;
 
-            &:hover {
-                border-color: $clr-primary-light;
+            .user-choice {
+                border: 2px solid $clr-gray300;
+                border-radius: $radius;
+                font-family: inherit;
+                font-size: inherit;
+                color: white;
+                outline: none;
+                padding: 10px;
+                margin-right: 12px;
+    
+                &:hover {
+                    border-color: $clr-primary-light;
+                }
+    
+                &:focus {
+                    border-color: $clr-primary;
+                }
+            }
+            
+            button {
+                background-color: $clr-primary-dark;
+                padding: 12px;
+                border: 2px solid;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                margin-right: 12px;
+    
+                &:hover {
+                    border-color: $clr-primary-light;
+                }
+    
+                &:focus {
+                    border-color: $clr-primary;
+                }
             }
 
-            &:focus {
-                border-color: $clr-primary;
-            }
-        }
-        
-        button {
-            background-color: $clr-primary-dark;
-            padding: 12px;
-            border: 2px solid;
-            border-radius: 0.5rem;
-            cursor: pointer;
-
-            &:hover {
-                border-color: $clr-primary-light;
-            }
-
-            &:focus {
-                border-color: $clr-primary;
+            p {
+                font-size: 28px;
+                padding-right: 22px;
+                padding-top: 16px;
             }
         }
 
         h1 {
             display: inline-block;
             padding-right: 10px;
+            padding-left: 29px;
+        }
+
+        img {
+            height: 200px;
+            width: auto;
         }
     }
 }

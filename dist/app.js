@@ -7,34 +7,29 @@
   \********************/
 /***/ (() => {
 
-var button = document.querySelector('button');
+// Get search button
+var button = document.querySelector('button'); // search books function
 
 function search() {
-  var userChoice = document.getElementById('user-choice').value.toLowerCase(); // alert(userChoiceGenerator);
-  // console.log(userChoiceGenerator);
+  // get user input
+  var userChoice = document.getElementById('user-choice').value.toLowerCase();
 
   if (userChoice.length > 0) {
     var BooksUrl = "https://openlibrary.org/subjects/".concat(userChoice, ".json");
     fetch(BooksUrl).then(function (response) {
-      // console.log(response);
       return response.json();
-    }).then(function (fantaBooks) {
-      // console.log(fantaBooks);
-      var fantaBooksTitlesGenerator = fantaBooks.works; // console.log(fantaBooksTitlesGenerator);
+    }).then(function (filteredBooks) {
+      var TitlesGenerator = filteredBooks.works;
+      var divBooksContainer = document.getElementById('books-container'); //create template to print filered books
 
-      var divBooksContainer = document.getElementById('books-container');
-      fantaBooksTitlesGenerator.forEach(function (element) {
-        // console.log(element.key);
-        var authors = element.authors; // console.log(authors);
-
+      TitlesGenerator.forEach(function (element) {
+        var authors = element.authors;
         var divCardBooks = document.createElement('div');
         divCardBooks.id = 'books-card';
         var divCardsContent = document.createElement('div');
         divCardsContent.className = 'card-content';
-        divCardsContent.innerHTML = element.title + ': '; // ulBooks.appendChild(liBooks);
-
+        divCardsContent.innerHTML = element.title + ': ';
         authors.forEach(function (el) {
-          // console.log(el);
           var authorsP = document.createElement('p');
           authorsP.innerHTML = el.name;
           divCardsContent.appendChild(authorsP);
@@ -46,39 +41,42 @@ function search() {
           var overlayInfo = document.getElementById('popup-1');
           overlayInfo.className = 'show'; // take infos
 
-          var currentKeyBooks = element.key; // console.log(currentKeyBooks);
+          var currentKeyBooks = element.key; // fetch to take descriptions' books
 
           fetch("https://openlibrary.org".concat(currentKeyBooks, ".json")).then(function (res) {
             return res.json();
           }).then(function (infos) {
-            console.log(infos);
-            var description = infos.description; // console.log(description);
-            // to append
+            // create template to print descriptions
+            var description = infos.description;
+            var content = document.getElementById('content'); // test create div container x h2 e p 
 
-            var content = document.getElementById('content');
+            var desContainer = document.createElement('div');
+            desContainer.className = 'description-container';
             var contentTitle = document.createElement('h2');
             contentTitle.innerHTML = infos.title;
             var descriptionParag = document.createElement('p');
-            descriptionParag.innerHTML = description;
-            var coverKey = infos.covers[5];
+            descriptionParag.innerHTML = description; //cover ?
+
+            var coverKey = infos.covers[0];
             console.log(coverKey);
             var cover = document.createElement('img');
-            cover.src = "https://covers.openlibrary.org/b/isbn/".concat(coverKey, "-S.jpg");
-            content.appendChild(contentTitle);
-            content.appendChild(descriptionParag);
+            cover.src = "https://covers.openlibrary.org/b/id/".concat(coverKey, "-M.jpg");
+            desContainer.appendChild(contentTitle);
+            desContainer.appendChild(descriptionParag);
+            content.appendChild(desContainer);
             content.appendChild(cover);
           });
         });
       });
-    }); // error reload same user value    
+    }); // fix error reload same user value    
 
     var userRefresh = document.getElementById('user-choice');
-    console.log(userRefresh);
     userRefresh.value = '';
   } else {
     alert('insert a genre!');
   }
-}
+} // search button finction
+
 
 button.addEventListener('click', function () {
   search();
@@ -92,14 +90,25 @@ closeBtn.addEventListener('click', function () {
   var descriptionToDelete = document.getElementById('content');
 
   if (descriptionToDelete != null) {
-    // remove h2
-    descriptionToDelete.removeChild(descriptionToDelete.lastChild); // remove p
-
+    // remove description container
     descriptionToDelete.removeChild(descriptionToDelete.lastChild); // remove img
 
     descriptionToDelete.removeChild(descriptionToDelete.lastChild);
   }
+}); // clear search
+
+var clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', function () {
+  clearSearch();
 });
+
+function clearSearch() {
+  var containerToRemove = document.getElementById('books-container'); // let divToRemove = document.getElementById('books-card');
+
+  while (containerToRemove.firstChild) {
+    containerToRemove.removeChild(containerToRemove.lastChild);
+  }
+}
 
 /***/ }),
 
