@@ -11,7 +11,9 @@
 var button = document.querySelector('button'); // search books function
 
 function search() {
-  // get user input
+  // to avoid printing a second search
+  clearSearch(); // get user input
+
   var userChoice = document.getElementById('user-choice').value.toLowerCase();
 
   if (userChoice.length > 0) {

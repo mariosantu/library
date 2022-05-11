@@ -4,6 +4,9 @@ let button = document.querySelector('button');
 // search books function
 function search() {
 
+    // to avoid printing a second search
+    clearSearch();
+    
     // get user input
     let userChoice = document.getElementById('user-choice').value.toLowerCase();
 

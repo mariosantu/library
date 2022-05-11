@@ -77,6 +77,30 @@ header .search-bar-container img {
   width: auto;
 }
 
+@media screen and (max-width: 573px) {
+  header .search-bar-container {
+    display: block;
+  }
+  header .search-bar-container .search-bar {
+    display: block;
+    padding: 0;
+  }
+  header img {
+    display: none;
+  }
+}
+@media screen and (min-width: 573px) and (max-width: 1300px) {
+  header .search-bar-container {
+    display: block;
+  }
+  header .search-bar-container .search-bar {
+    display: block;
+    padding: 0;
+  }
+  header img {
+    display: none;
+  }
+}
 main {
   width: 80%;
   margin: auto;
@@ -163,4 +187,47 @@ main .content .close-btn {
   text-align: center;
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 573px) {
+  main #books-container #books-card {
+    width: 100%;
+    padding: 13px;
+  }
+  main .content {
+    width: 100%;
+    min-height: 330px;
+  }
+  main .content img {
+    display: none;
+  }
+  main .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+}
+@media screen and (min-width: 573px) and (max-width: 800px) {
+  main #books-container #books-card {
+    width: 33.3333333333%;
+    padding: 13px;
+  }
+  main .content {
+    width: 100%;
+    min-height: 330px;
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 1300px) {
+  main #books-container #books-card {
+    width: 25%;
+    padding: 13px;
+  }
+  main .content {
+    width: 100%;
+    min-height: 330px;
+  }
 }

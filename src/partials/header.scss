@@ -66,3 +66,43 @@ header {
         }
     }
 }
+
+// media query 
+
+@media screen and (max-width: 573px) {
+   
+    header {
+
+        .search-bar-container {
+            display: block;
+
+            .search-bar {
+                display: block;
+                padding: 0;
+            }
+        }
+
+        img {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 573px) and (max-width: 1300px) {
+  
+    header {
+
+        .search-bar-container {
+            display: block;
+
+            .search-bar {
+                display: block;
+                padding: 0;
+            }
+        }
+
+        img {
+            display: none;
+        }
+    }
+}
